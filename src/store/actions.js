@@ -1,0 +1,1 @@
+export const CHANGE_ARTIST= 'CHANGE_ARTIST';
