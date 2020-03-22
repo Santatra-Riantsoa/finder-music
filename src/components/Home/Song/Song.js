@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 function Song(props) {
     const classes = useStyles();
-    let songPlaceHolder = props.album?.songs.map((song,index) =>(
+    const songPlaceHolder = props.album?.songs.map((song,index) =>(
         <div key ={index}>
         <ListItem button>
         <ListItemIcon>
@@ -28,8 +28,10 @@ function Song(props) {
       </div>
     ));
     return (
+      
         <List component="nav" className={classes.root} aria-label="contacts">
-        {songPlaceHolder}
+          <h5>Album : {props.album?.title}</h5>
+          {songPlaceHolder}
       </List>
 
     )

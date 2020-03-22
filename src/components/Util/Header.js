@@ -21,8 +21,6 @@ const Header = (props) =>{
                 props.onArtistChange(response)
             })
         }
-
-
     })
 
 }
