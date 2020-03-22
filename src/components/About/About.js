@@ -31,7 +31,7 @@ function About() {
         <Grid container className={classes.grid} spacing={2}>
             <Card className={classes.root} type="div">
                 <CardActionArea>
-                    <Avatar alt="Santatra Riantsoa" className={classes.large} src={"https://zupimages.net/viewer.php?id=20/13/2qbo.jpg"} />
+                    <Avatar alt="Santatra Riantsoa" className={classes.large} src={"https://www.zupimages.net/up/20/13/2qbo.jpg"} />
 
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -47,7 +47,7 @@ function About() {
 
             <Card className={classes.root}>
                 <CardActionArea>
-                    <Avatar alt="Nico ANDRIAMALALA" className={classes.large} src={"https://zupimages.net/viewer.php?id=20/13/7heh.jpg"} />
+                    <Avatar alt="Nico ANDRIAMALALA" className={classes.large} src={"https://www.zupimages.net/up/20/13/7heh.jpg"} />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             ANDRIAMALALA <br /> Louison Mamy Nico
