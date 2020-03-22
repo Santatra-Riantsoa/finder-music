@@ -5,7 +5,6 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import SearchIcon from '@material-ui/icons/Search';
 import _ from "lodash";
 import React, { useState } from 'react';
@@ -20,13 +19,12 @@ const Header = (props) =>{
   const classes = useStyles();
   const findArtist = (artistName) => {
     if(artistName==="") {
-      console.log("Here");
       setSearch([])
       return;
     }
     get('https://wasabi.i3s.unice.fr/search/fulltext/' + artistName).then(response => {
       if (response != null) {
-          setSearch(response);
+          setSearch(response.filter(e=>e.albumTitle==null));
       }
     })
 }
@@ -66,7 +64,7 @@ const onChange = (event) => {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Search an artist here…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -84,9 +82,7 @@ const onChange = (event) => {
                           <React.Fragment key={index}>
                             <ListItem key={value} button onClick={(e)=>{handleSearchClick(value.name)}}>
                               <ListItemAvatar>
-                                <Avatar>
-                                  <AccessibilityNewIcon />
-                                </Avatar>
+                                <Avatar alt="artist" src={value.picture} />
                               </ListItemAvatar>
                               <ListItemText primary={value.name} />
                             </ListItem>
