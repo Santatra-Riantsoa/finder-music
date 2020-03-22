@@ -7,11 +7,25 @@ import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png'
+import * as actionTypes from '../../store/actions';
+import {get} from '../../util/util';
+import {connect} from 'react-redux';
 
-
-export default function Header() {
+const Header = (props) =>{
   const classes = useStyles();
+  const findArtist = (artistName) => {
+    get('https://wasabi.i3s.unice.fr/search/fulltext/' + artistName).then(response => {
+        if (response != null) {
+            const name = response[0].name;
+            get('https://wasabi.i3s.unice.fr/search/artist/' + name).then(response => {
+                props.onArtistChange(response)
+            })
+        }
 
+
+    })
+
+}
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
@@ -32,6 +46,7 @@ export default function Header() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(event) => findArtist(event.target.value)}
             />
           </div>
           <div className="header-nav-container">
@@ -48,6 +63,19 @@ export default function Header() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+      art: state?.artist
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+      onArtistChange: (artistData) => dispatch({ type: actionTypes.CHANGE_ARTIST, artist: artistData })
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
 
 const useStyles = makeStyles(theme => ({
     root: {

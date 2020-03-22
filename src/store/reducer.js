@@ -1,6 +1,5 @@
 import * as actionTypes from './actions';
 import metallica from "../data/mettalica";
-import { get } from '../util/util';
 const initialState = {
         artist: metallica
 }
@@ -8,7 +7,15 @@ const initialState = {
 const reducer = (state = initialState, action) =>{
         switch(action.type) {
             case actionTypes.CHANGE_ARTIST:
-                return get('https://wasabi.i3s.unice.fr/search/more/Metallica');
+                console.log(state);
+                            return {
+                                ...state,
+                                artist :  action.artist
+                            };
+                
+            default:
+                return state;
+                
                 
         }
 }

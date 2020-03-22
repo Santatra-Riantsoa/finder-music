@@ -5,8 +5,7 @@ import About from "../About/About";
 import Detail from "../Detail/Detail";
 import Home from "../Home/Home";
 import NotFound from "../NotFound/NotFound";
-import Header from "../Util/Header";
-import "./BaseLayout.css";
+import Header from '../../components/Util/Header'
 
 function BaseLayout() {  
   return (
