@@ -17,7 +17,7 @@ class Photos extends React.Component {
       console.log("On va récupérer la photo No : " + this.idPhoto);
     let url = "https://jsonplaceholder.typicode.com/photos";
     console.log("Appelé avant le premier rendu du composant");
-    //this.getDataFromServer(url);
+    this.getDataFromServer(url);
   };
   getDataFromServer = url => {
     // utiliser fetch pour récupérer les données

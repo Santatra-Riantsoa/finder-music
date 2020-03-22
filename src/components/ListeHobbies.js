@@ -1,15 +1,14 @@
 
-import React from "react";
-import "./ListeHobbies.css";
-import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import React from "react";
 import Hobby from './Hobby';
+import "./ListeHobbies.css";
 
 class ListeHobbies extends React.Component {
   state = {
@@ -36,7 +35,7 @@ class ListeHobbies extends React.Component {
     // destructuration, permet d'utiliser des méthodes et propriétés
     // sans avoir besoin de les précéder par this. (par ex on utiliser
     // addHobby au lieu de this.addHobby, etc.)
-    const { addHobby, removeHobby } = this;
+    const { removeHobby } = this;
     const { hobbies } = this.state;
 
       let listeDesHobbies = hobbies.map((h, index) => (
