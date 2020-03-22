@@ -1,17 +1,17 @@
 
 import React from "react";
-import { NavLink, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import About from "../About/About";
-import "./BaseLayout.css";
+import Detail from "../Detail/Detail";
 import Home from "../Home/Home";
 import NotFound from "../NotFound/NotFound";
-import { InputBase } from "@material-ui/core";
-import Detail from "../Detail/Detail";
+import Header from "../Util/Header";
+import "./BaseLayout.css";
 
 function BaseLayout() {  
   return (
     <div className="global-container">
-        <div className="header">
+        {/* <div className="header">
             <div className="header-nav-container">
                 <div className="header__logo">
                     Finder Music Logo
@@ -39,7 +39,9 @@ function BaseLayout() {
                     />
                 </div>
             </div>
-        </div>
+        </div> */}
+        
+         <Header />
         <div className="main-content">
             <Switch>
                 <Route path="/" exact component={Home}></Route>
