@@ -6,6 +6,7 @@ import Detail from "../Detail/Detail";
 import Home from "../Home/Home";
 import NotFound from "../NotFound/NotFound";
 import Header from '../../components/Util/Header'
+import "./BaseLayout.css"
 
 function BaseLayout() {  
   return (

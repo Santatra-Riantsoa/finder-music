@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
-import {get} from '../../util/util'
+import { Avatar, Chip, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import "./Detail.css";
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Divider, Chip } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
-import metallica from '../../data/mettalica';
 import AmpStoriesIcon from '@material-ui/icons/AmpStories';
 import LanguageIcon from '@material-ui/icons/Language';
 import PeopleIcon from '@material-ui/icons/People';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import PersonIcon from '@material-ui/icons/Person';
+import React, { Component } from 'react';
+import metallica from '../../data/mettalica';
+import "./Detail.css";
 
 export default class Detail extends Component {
     constructor(props) {
