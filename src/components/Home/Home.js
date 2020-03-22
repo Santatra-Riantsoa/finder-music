@@ -5,17 +5,20 @@ import { Link } from 'react-router-dom';
 import { get } from '../../util/util';
 import metallica from "../../data/mettalica";
 import Artist from './Artist/Artist';
-import Albums from './Albums/Albums';
+import Album from './Album/Album';
 import Song from './Song/Song';
+import Grid from '@material-ui/core/Grid';
+import * as actionTypes from '../../store/actions';
+import { connect } from 'react-redux';
 
-export default class Home extends Component {
+ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            artist : metallica,
             value : 0,
             currentAlbum : null
         }
+        this.homeRef= React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -25,16 +28,25 @@ export default class Home extends Component {
         })
     }
     seeSong(event,album){
-                console.log("itooooooo   ",this);
                this.setState({currentAlbum : album });
                 this.handleChange(event,2);
     }
     handleChange(event, newValue) {
         this.setState({value:newValue});
     }
+    displayAlbumsContent(){
+        if(this.props.art!=null){
 
+            const albumsPlaceHolder=this.props.art.albums?.map((one ,index)=>(
+                <Album  key={index} album={one} clicked={(event)=>this.seeSong(event,one)}/>
+           ));
+           return albumsPlaceHolder;
+        }
+        
+    }
     render() {
         const {value} = this.state;
+
         return (
             <div>
                 <Paper>
@@ -50,12 +62,15 @@ export default class Home extends Component {
                         <Tab label="Songs" />
                     </Tabs>
                     <TabPanel value={value} index={0}>
-                        <Artist {...this.state.artist}
+                        <Artist {...this.props.art}
                         ></Artist>
                         <Link to="/detail/id">Go to detail</Link>
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <Albums albums={this.state.artist.albums} clicked={(event)=>this.seeSong(event,this.state.artist.albums[0])}></Albums>
+                    <Grid container>
+                        {this.displayAlbumsContent()}
+                    </Grid>
+
                     </TabPanel>
                     <TabPanel value={value} index={2}>
                         <Song album={this.state.currentAlbum} ></Song>
@@ -65,3 +80,14 @@ export default class Home extends Component {
         )
     }
 }
+const mapStateToProps = state =>{
+    return {
+        art : state?.artist
+    }
+}
+const mapDispatchToProps =  dispatch =>{
+    return {
+        onArtistChange : (artistData) =>dispatch({type :actionTypes.CHANGE_ARTIST,artist : artistData})
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) (Home);

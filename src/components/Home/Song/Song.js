@@ -18,7 +18,7 @@ function Song(props) {
     const classes = useStyles();
     console.log('current album ', props.album);
 
-    let songPlaceHolder = props.album.songs.map((song,index) =>(
+    let songPlaceHolder = props.album?.songs.map((song,index) =>(
         <div key ={index}>
         <ListItem button>
         <ListItemIcon>
