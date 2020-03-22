@@ -13,7 +13,6 @@ const reducer = (state = initialState, action) =>{
                                 artist :  action.artist
                             };
                 
-                    break;
             default:
                 return state;
                 
