@@ -1,13 +1,13 @@
-import { Paper, Tab, Tabs, CardContent, Card } from '@material-ui/core';
+import { Card, CardContent, Tab, Tabs } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
+import { get } from '../../util/util';
 import Detail from '../Detail/Detail';
 import TabPanel from '../Util/TabPanel';
 import Album from './Album/Album';
 import Song from './Song/Song';
-import { get } from '../../util/util';
 
 class Home extends Component {
     constructor(props) {
@@ -58,41 +58,40 @@ class Home extends Component {
         const defaulAlbum = this.state.currentAlbum ? this.state.currentAlbum : this.props.art.albums[0];
         return (
             <div>
-                <Paper>
-                    <Tabs
-                        value={value}
-                        onChange={this.handleChange}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        centered
-                    >
-                        <Tab label="Artist" />
-                        <Tab label="Album" />
-                        <Tab label="Songs" />
-                    </Tabs>
-                    <TabPanel value={value} index={0}>
-                        <Detail artist={this.props.art} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <Grid container>
-                        <Card className="card">
-                            <CardContent className="card-content">
-                                {this.displayAlbumsContent()}
-                            </CardContent>
-                        </Card>
-                            
-                        </Grid>
-
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                        <Card className="card">
-                            <CardContent className="card-content">
-                                <Song album={defaulAlbum} ></Song>
-                            </CardContent>
-                        </Card>
+                <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                    className="TabContainer"
+                >
+                    <Tab label="Artist" className="Tab"/>
+                    <Tab label="Album" className="Tab" />
+                    <Tab label="Songs" className="Tab" />
+                </Tabs>
+                <TabPanel value={value} index={0}>
+                    <Detail artist={this.props.art} />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <Grid container>
+                    <Card className="card">
+                        <CardContent className="card-content">
+                            {this.displayAlbumsContent()}
+                        </CardContent>
+                    </Card>
                         
-                    </TabPanel>
-                </Paper>
+                    </Grid>
+
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <Card className="card">
+                        <CardContent className="card-content">
+                            <Song album={defaulAlbum} ></Song>
+                        </CardContent>
+                    </Card>
+                    
+                </TabPanel>
             </div>
         )
     }

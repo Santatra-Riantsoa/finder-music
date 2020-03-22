@@ -1,29 +1,58 @@
+import { Avatar, Card, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
+import Divider from '@material-ui/core/Divider';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 import SearchIcon from '@material-ui/icons/Search';
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import logo from '../../assets/img/logo.png'
+import _ from "lodash";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+import logo from '../../assets/img/logo.png';
 import * as actionTypes from '../../store/actions';
-import {get} from '../../util/util';
-import {connect} from 'react-redux';
+import { get } from '../../util/util';
 
 const Header = (props) =>{
+  const [search, setSearch] = useState([{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } }]);
   const classes = useStyles();
   const findArtist = (artistName) => {
-    get('https://wasabi.i3s.unice.fr/search/fulltext/' + artistName).then(response => {
-        if (response != null) {
-            const name = response[0].name;
-            get('https://wasabi.i3s.unice.fr/search/artist/' + name).then(response => {
-                props.onArtistChange(response)
-            })
-        }
-    })
-
+    if(artistName==="") {
+      console.log("Here");
+      setSearch([])
+      return;
+    }
+    // get('https://wasabi.i3s.unice.fr/search/fulltext/' + artistName).then(response => {
+    //   if (response != null) {
+    //       setSearch(response);
+    //   }
+    // })
+    setSearch([{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } }]); 
 }
+
+const handleSearchClick = function (name){
+  get('https://wasabi.i3s.unice.fr/search/artist/' + name).then(response => {
+      props.onArtistChange(response);
+  }).catch(e=>console.log(e))
+  .finally((e)=>{
+    setSearch([])
+  })
+}
+
+let debouncedFn = null;
+
+const onChange = (event) => {
+  event.persist();
+  if (!debouncedFn) {
+    debouncedFn =  _.debounce(() => {
+       findArtist(event.target.value);
+    }, 300);
+  }
+  debouncedFn();
+}
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
@@ -44,9 +73,36 @@ const Header = (props) =>{
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(event) => findArtist(event.target.value)}
+              onChange={onChange}
             />
+            <Card className="search-result">
+            {
+                (search && search.length>0) && (
+                  <List dense className={classes.searchResult}>
+                    {
+                      search?.map((value, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            <ListItem key={value} button onClick={(e)=>{handleSearchClick(value.name)}}>
+                              <ListItemAvatar>
+                                <Avatar>
+                                  <AccessibilityNewIcon />
+                                </Avatar>
+                              </ListItemAvatar>
+                              <ListItemText primary={value.name} />
+                            </ListItem>
+                            <Divider variant="inset" component="li" />
+                          </React.Fragment>
+                        );
+                      }
+                      )
+                    }
+                  </List>
+                )
+              }
+            </Card>
           </div>
+         
           <div className="header-nav-container">
             <nav className="header__navigation">
                 <ul>
@@ -78,7 +134,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(Header);
 const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
-      
+      zIndex: 2,
+      position: 'relative'
+    },
+
+    searchResult: {
+      width: '100%',
+      backgroundColor: theme.palette.background.paper,
+      color: 'black'
     },
   
     toolbar: {

@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  songRoot: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
@@ -29,7 +29,7 @@ function Song(props) {
     ));
     return (
       
-        <List component="nav" className={classes.root} aria-label="contacts">
+        <List component="nav" className={classes.songRoot} aria-label="contacts">
           <h5>Album : {props.album?.title}</h5>
           {songPlaceHolder}
       </List>

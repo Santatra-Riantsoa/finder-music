@@ -256,7 +256,7 @@ export default function Detail(props){
                                                         {
                                                             artistInfo.urls.map((value,index) => {
                                                                 return(
-                                                                    <li key={index}><a href={value}  target="_blank" rel="noopener noreferrer" >{value}></a></li>
+                                                                    <li key={index}><a href={value}  target="_blank" rel="noopener noreferrer" >{value}</a></li>
                                                                 )
                                                             })
                                                         }
