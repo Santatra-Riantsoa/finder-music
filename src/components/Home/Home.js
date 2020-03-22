@@ -1,31 +1,42 @@
-import React, { Component } from 'react'
-import { Paper, Tabs, Tab } from '@material-ui/core'
-import TabPanel from '../Util/TabPanel'
-import { Link } from 'react-router-dom';
-import { get } from '../../util/util';
-import Artist from './Artist/Artist';
+import { Paper, Tab, Tabs, CardContent, Card } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions';
+import Detail from '../Detail/Detail';
+import TabPanel from '../Util/TabPanel';
 import Album from './Album/Album';
 import Song from './Song/Song';
-import Grid from '@material-ui/core/Grid';
-import * as actionTypes from '../../store/actions';
-import { connect } from 'react-redux';
+import { get } from '../../util/util';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             value: 0,
-            currentAlbum: null
+            currentAlbum: null,
+            artist: this.props.art,
         }
+        this.id = this.props.match?.params?.id;
         this.homeRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
-        get('https://wasabi.i3s.unice.fr/search/more/Metallica').then(response => {
-        })
+        this.getDetailFromServer();
     }
+
+    getDetailFromServer() {
+        if(this.id) {
+            get("https://wasabi.i3s.unice.fr/api/v1/artist/id/"+this.id).then((result) => {
+                this.setState({artist:result});
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+    }
+
     seeSong(event, album) {
         this.setState({ currentAlbum: album });
         this.handleChange(event, 2);
@@ -35,7 +46,6 @@ class Home extends Component {
     }
     displayAlbumsContent() {
         if (this.props.art != null) {
-
             const albumsPlaceHolder = this.props.art.albums?.map((one, index) => (
                 <Album key={index} album={one} clicked={(event) => this.seeSong(event, one)} />
             ));
@@ -61,18 +71,26 @@ class Home extends Component {
                         <Tab label="Songs" />
                     </Tabs>
                     <TabPanel value={value} index={0}>
-                        <Artist {...this.props.art}
-                        ></Artist>
-                        <Link to="/detail/id">Go to detail</Link>
+                        <Detail artist={this.props.art} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
                         <Grid container>
-                            {this.displayAlbumsContent()}
+                        <Card className="card">
+                            <CardContent className="card-content">
+                                {this.displayAlbumsContent()}
+                            </CardContent>
+                        </Card>
+                            
                         </Grid>
 
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                        <Song album={defaulAlbum} ></Song>
+                        <Card className="card">
+                            <CardContent className="card-content">
+                                <Song album={defaulAlbum} ></Song>
+                            </CardContent>
+                        </Card>
+                        
                     </TabPanel>
                 </Paper>
             </div>

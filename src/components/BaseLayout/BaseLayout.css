@@ -44,3 +44,14 @@
 .main-content {
     margin: 20px 10px;
 }
+
+.album {
+    margin: 15px 10px;
+    min-width: 345px;
+}
+
+.card-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

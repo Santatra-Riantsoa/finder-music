@@ -5,34 +5,11 @@ import AmpStoriesIcon from '@material-ui/icons/AmpStories';
 import LanguageIcon from '@material-ui/icons/Language';
 import PeopleIcon from '@material-ui/icons/People';
 import PersonIcon from '@material-ui/icons/Person';
-import React, { Component } from 'react';
-import metallica from '../../data/mettalica';
+import React from 'react';
 import "./Detail.css";
 
-export default class Detail extends Component {
-    constructor(props) {
-        super(props);
-        this.id = this.props.match.params.id;
-        this.state = {
-            artistInfo: metallica
-        }
-    }
-
-    componentDidMount() {
-        this.getDetailFromServer();
-    }
-
-    getDetailFromServer() {
-        /*get("https://wasabi.i3s.unice.fr/api/v1/artist/id/"+this.id).then((result) => {
-            console.log(result);
-            this.setState({artistInfo:result});
-        }).catch((err) => {
-            console.log(err);
-        });*/
-    }
-
-    render() {
-        const {artistInfo} = this.state;
+export default function Detail(props){
+        const artistInfo = props.artist;
         return (
             <div>
                 <Card className="card">
@@ -40,7 +17,7 @@ export default class Detail extends Component {
                         <div className="artist-header">
                             <div className="link-container">
                                  <ul>    
-                                    {/* <li><a href={artistInfo.urlWikipedia} target="_blank" rel="noopener noreferrer"><Avatar alt="Wikipedia" src="https://wasabi.i3s.unice.fr/img/wikipedia_icon.svg" /></a></li>
+                                    <li><a href={artistInfo.urlWikipedia} target="_blank" rel="noopener noreferrer"><Avatar alt="Wikipedia" src="https://wasabi.i3s.unice.fr/img/wikipedia_icon.svg" /></a></li>
                                     <li><a href={artistInfo.urlFacebook} target="_blank" rel="noopener noreferrer"><Avatar alt="Facebook" src="https://wasabi.i3s.unice.fr/img/facebook_icon.svg" /></a></li>
                                     <li><a href={artistInfo.urlTwitter} target="_blank" rel="noopener noreferrer"><Avatar alt="Twitter" src="https://wasabi.i3s.unice.fr/img/twitter_icon.svg" /></a></li>
                                     <li><a href={artistInfo.urlAmazon} target="_blank" rel="noopener noreferrer"><Avatar alt="Amazon" src="https://wasabi.i3s.unice.fr/img/amazon_icon.svg" /></a></li>
@@ -58,7 +35,7 @@ export default class Detail extends Component {
                                     <li><a href={artistInfo.urlRateYourMusic} target="_blank" rel="noopener noreferrer"><Avatar alt="RateYourMusic" src="https://wasabi.i3s.unice.fr/img/rateyourmusic_icon.svg" /></a></li>
                                     <li><a href={artistInfo.urlLastFm} target="_blank" rel="noopener noreferrer"><Avatar alt="LastFm" src="https://wasabi.i3s.unice.fr/img/lastfm_icon.svg" /></a></li>
                                     <li><a href={artistInfo.urlDiscogs} target="_blank" rel="noopener noreferrer"><Avatar alt="DiscoveryHub" src="https://wasabi.i3s.unice.fr/img/discoveryhub_icon.png" /></a></li>
-                                    <li><a href={artistInfo.urlWikia} target="_blank" rel="noopener noreferrer"><Avatar alt="LyricsWikia" src="https://wasabi.i3s.unice.fr/img/lyricswikia_icon.svg" /></a></li>  */}
+                                    <li><a href={artistInfo.urlWikia} target="_blank" rel="noopener noreferrer"><Avatar alt="LyricsWikia" src="https://wasabi.i3s.unice.fr/img/lyricswikia_icon.svg" /></a></li> 
                                  </ul>
                             </div>
                             <h2>{artistInfo.name}</h2>
@@ -279,14 +256,12 @@ export default class Detail extends Component {
                                                         {
                                                             artistInfo.urls.map((value,index) => {
                                                                 return(
-                                                                <li><a href={value}  target="_blank" rel="noopener noreferrer" >{value}></a></li>
+                                                                    <li key={index}><a href={value}  target="_blank" rel="noopener noreferrer" >{value}></a></li>
                                                                 )
                                                             })
                                                         }
                                                     </ul>
                                                 </div>
-                                                
-                                                <Divider variant="inset" component="li" />
                                             </div>
                                         )    
                                     }
@@ -302,4 +277,3 @@ export default class Detail extends Component {
             </div>
         )
     }
-}

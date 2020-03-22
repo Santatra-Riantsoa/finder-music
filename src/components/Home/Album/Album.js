@@ -48,7 +48,7 @@ const Album = (props) => {
 
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root+" album"}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -71,14 +71,22 @@ const Album = (props) => {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+        {
+          props.album.genre && (<React.Fragment><strong>Genre : </strong> <span>{props.album.genre}</span></React.Fragment>)
+        }
+        {
+          props.album.upc && (<React.Fragment><strong> - UPC : </strong> <span>{props.album.upc}</span></React.Fragment>)
+        }
+        {
+          props.album.publicationDate && (<React.Fragment><strong> - Publication Date : </strong> <span>{props.album.publicationDate}</span></React.Fragment>)
+        }
+            
           </Typography>
       </CardContent>
       <CardActions>
         <Button size="small" color="primary" onClick={(event) => props.clicked(event, props.album)}>
           See Song
-                    </Button>
-
+        </Button>
       </CardActions>
 
     </Card>
