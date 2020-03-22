@@ -16,7 +16,7 @@ import * as actionTypes from '../../store/actions';
 import { get } from '../../util/util';
 
 const Header = (props) =>{
-  const [search, setSearch] = useState([{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } },{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } }]);
+  const [search, setSearch] = useState([]);
   const classes = useStyles();
   const findArtist = (artistName) => {
     if(artistName==="") {
@@ -24,12 +24,11 @@ const Header = (props) =>{
       setSearch([])
       return;
     }
-    // get('https://wasabi.i3s.unice.fr/search/fulltext/' + artistName).then(response => {
-    //   if (response != null) {
-    //       setSearch(response);
-    //   }
-    // })
-    setSearch([{ "name": "Iron Maiden", "nameSuggest": { "input": ["Iron Maiden", "Maiden"], "weight": 1641346 } }]); 
+    get('https://wasabi.i3s.unice.fr/search/fulltext/' + artistName).then(response => {
+      if (response != null) {
+          setSearch(response);
+      }
+    })
 }
 
 const handleSearchClick = function (name){

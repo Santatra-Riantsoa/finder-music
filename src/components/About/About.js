@@ -53,12 +53,12 @@ function About() {
 
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
-                            Louison Mamy Nico ANDRIAMALALA
+                            ANDRIAMALALA <br/> Louison Mamy Nico 
 
 
           </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            email : louison-mamy-nico.andriamalala@etu.univ-cotedazur.fr
+                            email : <br/> louison-mamy-nico.andriamalala@etu.univ-cotedazur.fr
 
 
           </Typography>
