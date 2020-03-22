@@ -1,7 +1,4 @@
-.global-container {
-    width: 90%;
-    margin: 0 auto;
-}
+
 
 .header {
     padding: 10px 10px;
@@ -14,9 +11,8 @@
     display: flex;
 }
 
-.header__logo {
-    color: white;
-    margin-right: 100px;
+.logo {
+    width: 185px;
 }
 
 .header__navigation ul {
@@ -33,29 +29,17 @@
     text-decoration: none;
     margin: 0 5px;
     color: white;
-    font-family: Poppins,sans-serif;
+    font-size: 14px;
+}
+.nav-link-container {
+    padding: 5px;
+    border-radius: 10px;
+    padding-top: 2px;   
 }
 
-.search {
-    position: relative;
-    background-color:white;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    width: 500px;
-}
-
-.search-icon {
-    margin-right: 12px;
-}
-
-.input-root {
-    color: inherit;
-}
-
-.input-input {
-    width: 100% !important;
-    padding: 0 !important;
+.nav-link-container:hover {
+    
+    background: hsla(0,0%,100%,.07);
 }
 
 .main-content {
