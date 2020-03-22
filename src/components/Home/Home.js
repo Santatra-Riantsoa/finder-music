@@ -22,12 +22,13 @@ export default class Home extends Component {
 
     componentDidMount() {
         get('https://wasabi.i3s.unice.fr/search/more/Metallica').then(response=>{
+
         })
     }
     seeSong(event,album){
-                console.log("itooooooo   ",this);
-               this.setState({currentAlbum : album });
-                this.handleChange(event,2);
+        console.log("itooooooo   ",this);
+        this.setState({currentAlbum : album });
+        this.handleChange(event,2);
     }
     handleChange(event, newValue) {
         this.setState({value:newValue});
@@ -50,8 +51,7 @@ export default class Home extends Component {
                         <Tab label="Songs" />
                     </Tabs>
                     <TabPanel value={value} index={0}>
-                        <Artist {...this.state.artist}
-                        ></Artist>
+                        <Artist {...this.state.artist} />
                         <Link to="/detail/id">Go to detail</Link>
                     </TabPanel>
                     <TabPanel value={value} index={1}>

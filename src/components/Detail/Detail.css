@@ -1,0 +1,115 @@
+.artist-header {
+    height: 260px;
+    background: linear-gradient(-20deg,#2b5876,#3d4977)!important;
+    padding-top: 12px;
+}
+
+.artist-header h2 {
+    color: white;
+}
+
+.link-container ul {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+}
+
+.link-container li {
+    padding: 5px;
+}
+
+.link-container li:hover{
+    border-radius: 50%;
+    background: hsla(0,0%,100%,.07);
+}
+
+.card {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.card-content {
+    padding: 0 !important;   
+}
+
+.link-container {
+    display: flex;
+}
+
+.link-container ul,li {
+    list-style: none;
+}
+
+.artist-info-container {
+    position: relative;
+    
+}
+
+.img-container img {
+    width: 190px;
+    border-radius: 50%;
+}
+
+.img-container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: -100px !important;
+}
+
+.artist-resume {
+    padding: 50px;
+    padding-top: 90px;
+    padding-bottom: 0;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.artist-info {
+    padding: 0 50px;
+}
+
+.artist-info-text span {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.artist-info-text p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.multilist-info {
+    display: flex;
+    margin-left: 70px;
+}
+
+.multilist-info span {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.multilist-info p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.multilist-info__chips {
+    display: flex;
+    margin-left: 75px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.multilist-info__chips ul {
+    text-align: left;
+}
+
+.multilist-info__chip {
+    margin: 5px 2px;
+    background-color: #3d4977 !important;
+    color: white !important;
+}

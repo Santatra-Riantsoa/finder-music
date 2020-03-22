@@ -11,37 +11,7 @@ import "./BaseLayout.css";
 function BaseLayout() {  
   return (
     <div className="global-container">
-        {/* <div className="header">
-            <div className="header-nav-container">
-                <div className="header__logo">
-                    Finder Music Logo
-                </div>
-                <nav className="header__navigation">
-                    <ul>
-                        <li><NavLink to="/" className="nav-link">Home</NavLink></li>
-                        <li><NavLink to="/about" className="nav-link">About Us</NavLink></li>
-                        <li><a href='https://github.com/Santatra-Riantsoa/finder-music' target="_blank" rel="noopener noreferrer" className="nav-link">GitHub</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div className="header__search">
-                <div className="search">
-                <span className="material-icons search-icon ">
-                    search
-                </span>
-                    <InputBase
-                        placeholder="Search…"
-                        classes={{
-                            root: "input-root",
-                            input: "input-input",
-                        }}
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </div>
-            </div>
-        </div> */}
-        
-         <Header />
+        <Header />
         <div className="main-content">
             <Switch>
                 <Route path="/" exact component={Home}></Route>
@@ -50,10 +20,6 @@ function BaseLayout() {
                 <Route component={NotFound} />
             </Switch>
         </div>
-        <div className="footer">
-
-        </div>
-        
     </div>
   );
 }
