@@ -1,13 +1,11 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import nico from '../../assets/img/Nico.jpg';
-import santatra from '../../assets/img/santatra.jpg';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -33,7 +31,7 @@ function About() {
         <Grid container className={classes.grid} spacing={2}>
             <Card className={classes.root} type="div">
                 <CardActionArea>
-                    <Avatar alt="Cindy Baker" className={classes.large} src={santatra} />
+                    <Avatar alt="Santatra Riantsoa" className={classes.large} src={"https://zupimages.net/viewer.php?id=20/13/2qbo.jpg"} />
 
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -49,7 +47,7 @@ function About() {
 
             <Card className={classes.root}>
                 <CardActionArea>
-                    <Avatar alt="Cindy Baker" className={classes.large} src={nico} />
+                    <Avatar alt="Nico ANDRIAMALALA" className={classes.large} src={"https://zupimages.net/viewer.php?id=20/13/7heh.jpg"} />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             ANDRIAMALALA <br /> Louison Mamy Nico
