@@ -1,4 +1,5 @@
 .artist-header {
+    width: 100%;
     height: 260px;
     background: linear-gradient(-20deg,#2b5876,#3d4977)!important;
     padding-top: 12px;

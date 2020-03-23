@@ -43,21 +43,18 @@ const Song= (props) =>{
     const classes = useStyles();
     const theme = useTheme();
     useEffect(() => {
-        console.log(audio);
         audio.pause();
             },
       [audio],[currentSong]
     );
     const playSong =(song)=>{
         setCurrentSong(state=>{
-            let currentStatus = {...currentSong};
-            return {song : song.song,isPlayed : !currentStatus.isPlayed}
+            return {song : song.song,isPlayed : !state.isPlayed}
         });
         audio.pause();
 
         setAudio(new Audio(song.song.preview,));
         if(currentSong?._id === song._id){
-            console.log(currentSong.isPlayed);
             currentSong.isPlayed? audio.play() : audio.pause();
             }
        

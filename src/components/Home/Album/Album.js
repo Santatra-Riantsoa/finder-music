@@ -85,7 +85,7 @@ const Album = (props) => {
       </CardContent>
       <CardActions>
         <Button size="small" color="primary" onClick={(event) => props.clicked(event, props.album)}>
-          See Song
+          Play Songs
         </Button>
       </CardActions>
 

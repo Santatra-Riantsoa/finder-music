@@ -15,7 +15,6 @@ function BaseLayout() {
             <Switch>
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/about" exact component={About}></Route>
-                <Route path="/detail/:id" exact component={Home}></Route>
                 <Route component={NotFound} />
             </Switch>
         </div>
